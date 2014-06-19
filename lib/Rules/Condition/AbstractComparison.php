@@ -3,41 +3,41 @@
  * Abstract base class for Comparison condition
  */
 
-namespace Rules;
+namespace Rules\Condition;
 
-use Rules\Condition;
+use Rules\IsCondition;
 
 /**
  * Implements base functionality for Comparison conditions
  *
  * @author Tom Van Herreweghe <tom@king-foo.be>
  */
-abstract class AbstractComparison implements Condition
+abstract class AbstractComparison implements IsCondition
 {
     /**
      * @var mixed
      */
-    protected $left;
+    public $left;
 
     /**
      * @var mixed
      */
-    protected $right;
+    public $right;
 
     /**
      * @var mixed Default true
      */
-    protected $positiveResult = true;
+    public $positiveResult = true;
 
     /**
      * @var mixed Default false
      */
-    protected $negativeResult = false;
+    public $negativeResult = false;
 
     /**
      * @var bool Default false
      */
-    protected $breaksChain = false;
+    public $breaksChain = false;
 
     /**
      * Class constructor

@@ -11,7 +11,7 @@ namespace Rules;
  *
  * @author Tom Van Herreweghe <tom@king-foo.be>
  */
-interface Condition
+interface IsCondition
 {
     /**
      * If the condition evaluates to boolean TRUE,
