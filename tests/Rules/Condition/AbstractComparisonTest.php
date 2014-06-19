@@ -2,6 +2,9 @@
 
 class AbstractComparisonTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var string
+     */
     protected $classname = '\\Rules\\Condition\\AbstractComparison';
 
     /**
