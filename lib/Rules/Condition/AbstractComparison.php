@@ -6,6 +6,7 @@
 namespace Rules\Condition;
 
 use Rules\IsCondition;
+use Rules\Exception\InvalidArgumentException;
 
 /**
  * Implements base functionality for Comparison conditions
@@ -48,6 +49,18 @@ abstract class AbstractComparison implements IsCondition, Assessable
      */
     public function __construct($leftValue, $rightValue)
     {
+        if (!is_scalar($leftValue)) {
+            throw new InvalidArgumentException(
+                'Left value is not a scalar value'
+            );
+        }
+
+        if (!is_scalar($rightValue)) {
+            throw new InvalidArgumentException(
+                'Right value is not a scalar value'
+            );
+        }
+
         $this->left = $leftValue;
         $this->right = $rightValue;
     }

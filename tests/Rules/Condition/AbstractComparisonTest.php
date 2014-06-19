@@ -21,6 +21,21 @@ class AbstractComparisonTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers \Rules\Condition\AbstractComparison::__construct
+     * @expectedException \Rules\Exception\InvalidArgumentException
+     */
+    public function testConstructorArgumentsShouldBeScalar()
+    {
+        $left = new \stdClass();
+        $right = new \stdClass();
+        $arguments = array($left, $right);
+        $object = $this->getMockForAbstractClass(
+            $this->classname,
+            $arguments
+        );
+    }
+
+    /**
      * Returns a mock object for AbstractComparison
      *
      * @return \Rules\Condition\AbstractComparison
