@@ -44,6 +44,7 @@ _todo_
 ## Roadmap
 
 1. Create base classes so the rules can be manually stitched together, and evaluated to produce a single result
-2. Create a RulesBuilder to achieve the same result, but with a more fluent interface
-3. Create a DSL on top of the existing code to allow a more natural looking programation
+1. Create ConditionChain class to chain together a bunch of conditions
+1. Create a RulesBuilder to achieve the same result, but with a more fluent interface
+1. Create a DSL on top of the existing code to allow a more natural looking programation
 
