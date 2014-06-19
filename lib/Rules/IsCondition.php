@@ -18,7 +18,7 @@ interface IsCondition
      * return given value
      *
      * @param mixed $value
-     * @return \Rules\Condition
+     * @return \Rules\IsCondition
      */
     public function whenTrue($value);
 
@@ -27,7 +27,7 @@ interface IsCondition
      * return given value
      *
      * @param mixed $value
-     * @return \Rules\Condition
+     * @return \Rules\IsCondition
      */
     public function whenFalse($value);
 
@@ -37,16 +37,15 @@ interface IsCondition
      * should happen
      *
      * @param bool $value
-     * @return \Rules\Condition
+     * @return \Rules\IsCondition
      */
     public function breaksChain($value = true);
 
     /**
-     * Evaluates the condition and returns
-     * the result
+     * Resets the given properties to the default values
      *
-     * @return mixed
+     * @return \Rules\IsCondition
      */
-    public function evaluate();
+    public function reset();
 }
 

@@ -12,7 +12,7 @@ use Rules\IsCondition;
  *
  * @author Tom Van Herreweghe <tom@king-foo.be>
  */
-abstract class AbstractComparison implements IsCondition
+abstract class AbstractComparison implements IsCondition, Assessable
 {
     /**
      * @var mixed
@@ -57,7 +57,7 @@ abstract class AbstractComparison implements IsCondition
      * return given value
      *
      * @param mixed $value
-     * @return \Rules\Condition
+     * @return \Rules\IsCondition
      */
     public function whenTrue($value)
     {
@@ -71,7 +71,7 @@ abstract class AbstractComparison implements IsCondition
      * return given value
      *
      * @param mixed $value
-     * @return \Rules\Condition
+     * @return \Rules\IsCondition
      */
     public function whenFalse($value)
     {
@@ -86,13 +86,25 @@ abstract class AbstractComparison implements IsCondition
      * should happen
      *
      * @param bool $value
-     * @return \Rules\Condition
+     * @return \Rules\IsCondition
      */
     public function breaksChain($value = true)
     {
         $this->breaksChain = (bool) $value;
 
         return $this;
+    }
+
+    /**
+     * Resets the given properties to the default values
+     *
+     * @return \Rules\IsCondition
+     */
+    public function reset()
+    {
+        return $this->whenTrue(true)
+            ->whenFalse(false)
+            ->breaksChain(false);
     }
 
     /**

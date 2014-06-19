@@ -25,16 +25,16 @@ class AbstractComparisonTest extends \PHPUnit_Framework_TestCase
      *
      * @return \Rules\Condition\AbstractComparison
      */
-    private function getAbstractComparisonMock()
+    private function getAbstractComparisonMock(array $methods = array())
     {
         $arguments = array(
             mt_rand(1, 100),
             mt_rand(1, 100),
         );
-        $object = $this->getMockForAbstractClass(
-            $this->classname,
-            $arguments
-        );
+        $object = $this->getMockBuilder($this->classname)
+            ->setMethods($methods)
+            ->setConstructorArgs($arguments)
+            ->getMockForAbstractClass();
 
         return $object;
     }
@@ -48,6 +48,17 @@ class AbstractComparisonTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNotNull($object->left);
         $this->assertNotNull($object->right);
+    }
+
+    /**
+     * @covers \Rules\Condition\AbstractComparison::__construct
+     */
+    public function testClassImplementsCorrectInterfaces()
+    {
+        $object = $this->getAbstractComparisonMock();
+
+        $this->assertInstanceOf('\\Rules\\IsCondition', $object);
+        $this->assertInstanceOf('\\Rules\\Condition\\Assessable', $object);
     }
 
     /**
@@ -123,6 +134,37 @@ class AbstractComparisonTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($object->breaksChain);
         $object->breaksChain($value);
         $this->assertEquals($value, $object->breaksChain);
+    }
+
+    /**
+     * @covers \Rules\Condition\AbstractComparison::reset
+     */
+    public function testResetCallsInternalMethods()
+    {
+        $object = $this->getAbstractComparisonMock(
+            array(
+                'whenTrue',
+                'whenFalse',
+                'breaksChain',
+            )
+        );
+
+        $object->expects($this->once())
+            ->method('whenTrue')
+            ->with($this->equalTo(true))
+            ->will($this->returnValue($object));
+
+        $object->expects($this->once())
+            ->method('whenFalse')
+            ->with($this->equalTo(false))
+            ->will($this->returnValue($object));
+
+        $object->expects($this->once())
+            ->method('breaksChain')
+            ->with($this->equalTo(false))
+            ->will($this->returnValue($object));
+
+        $object->reset();
     }
 }
 
