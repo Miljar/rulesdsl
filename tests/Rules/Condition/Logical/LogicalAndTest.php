@@ -140,6 +140,27 @@ class LogicalAndTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('yes', $result);
     }
+
+    /**
+     * @covers \Rules\Condition\Logical\LogicalAnd::evaluate
+     */
+    public function testRecursive()
+    {
+        $left = new \Rules\Condition\Comparison\Equal(1, 1);
+        $right = new \Rules\Condition\Comparison\Equal('foo', 'foo');
+        $and1 = new $this->classname($left, $right);
+
+        $left = new \Rules\Condition\Comparison\Equal(5, 5);
+        $right = new \Rules\Condition\Comparison\Equal('foo', 'bar');
+        $and2 = new $this->classname($left, $right);
+
+        $and = new $this->classname($and1, $and2);
+        $result = $and->whenTrue('yes')
+            ->whenFalse('no')
+            ->evaluate();
+
+        $this->assertEquals('no', $result);
+    }
 }
 
 
