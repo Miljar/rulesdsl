@@ -14,7 +14,25 @@ to produce a single desired result.
 
 ```php
 <?php
-// Manually stitching things together (todo)
+// Manually stitching things together (todo: implement ConditionChain)
+$condition1 = new \Rules\Condition\Comparison\Equal(
+    $bet->goals_home,
+    $game->goals_home,
+);
+$condition2 = new \Rules\Condition\Comparison\Equal(
+    $bet->goals_away,
+    $game->goals_away,
+);
+$andCondition = new \Rules\Condition\Logical\LogicalAnd(
+    $condition1,
+    $condition2
+);
+
+$result = $andCondition->whenTrue(3)
+    ->whenFalse(0)
+    ->evaluate();
+
+// $result == 3
 
 // Using RulesBuilder (todo)
 ```
