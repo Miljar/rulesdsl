@@ -3,7 +3,7 @@
  * Condition to determine if given input values are equal
  */
 
-namespace Rules;
+namespace Rules\Condition\Comparison;
 
 use Rules\Condition\AbstractComparison;
 
