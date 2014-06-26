@@ -30,4 +30,3 @@ class Equal extends AbstractComparison
         return $this->negativeResult;
     }
 }
-

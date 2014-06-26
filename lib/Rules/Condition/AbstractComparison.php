@@ -128,4 +128,3 @@ abstract class AbstractComparison implements IsCondition, Assessable
      */
     abstract public function evaluate();
 }
-

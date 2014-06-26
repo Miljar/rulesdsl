@@ -21,4 +21,3 @@ interface Assessable
      */
     public function evaluate();
 }
-

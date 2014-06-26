@@ -48,4 +48,3 @@ interface IsCondition
      */
     public function reset();
 }
-

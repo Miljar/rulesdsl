@@ -15,4 +15,3 @@ use \InvalidArgumentException as BaseException;
 class InvalidArgumentException extends BaseException
 {
 }
-

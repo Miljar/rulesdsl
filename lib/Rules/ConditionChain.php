@@ -83,4 +83,3 @@ class ConditionChain implements IsConditionChain
         return $result;
     }
 }
-

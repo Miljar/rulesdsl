@@ -49,13 +49,13 @@ abstract class AbstractLogical implements IsCondition, Assessable
      */
     public function __construct($leftValue, $rightValue)
     {
-        if (!($leftValue instanceOf IsCondition && $leftValue instanceof Assessable)) {
+        if (!($leftValue instanceof IsCondition && $leftValue instanceof Assessable)) {
             throw new InvalidArgumentException(
                 'The left input parameter should be an assessable condition'
             );
         }
 
-        if (!($rightValue instanceOf IsCondition && $rightValue instanceof Assessable)) {
+        if (!($rightValue instanceof IsCondition && $rightValue instanceof Assessable)) {
             throw new InvalidArgumentException(
                 'The right input parameter should be an assessable condition'
             );
@@ -128,4 +128,3 @@ abstract class AbstractLogical implements IsCondition, Assessable
      */
     abstract public function evaluate();
 }
-

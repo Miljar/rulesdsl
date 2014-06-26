@@ -35,5 +35,3 @@ class LogicalAnd extends AbstractLogical
         return $this->negativeResult;
     }
 }
-
-

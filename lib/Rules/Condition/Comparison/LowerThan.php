@@ -32,4 +32,3 @@ class LowerThan extends AbstractComparison
         return $this->negativeResult;
     }
 }
-

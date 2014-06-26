@@ -28,4 +28,3 @@ interface IsConditionChain
      */
     public function evaluate();
 }
-
