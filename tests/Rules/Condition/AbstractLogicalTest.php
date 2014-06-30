@@ -212,5 +212,15 @@ class AbstractLogicalTest extends \PHPUnit_Framework_TestCase
 
         $object->reset();
     }
+
+    /**
+     * @covers \Rules\Condition\AbstractLogical::__toString
+     */
+    public function testToStringReturnsString()
+    {
+        $object = $this->getAbstractLogicalMock();
+
+        $this->assertInternalType('string', $object->__toString());
+    }
 }
 

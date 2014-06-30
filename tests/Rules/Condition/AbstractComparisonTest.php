@@ -181,5 +181,15 @@ class AbstractComparisonTest extends \PHPUnit_Framework_TestCase
 
         $object->reset();
     }
+
+    /**
+     * @covers \Rules\Condition\AbstractComparison::__toString
+     */
+    public function testToStringReturnsString()
+    {
+        $object = $this->getAbstractComparisonMock();
+
+        $this->assertInternalType('string', $object->__toString());
+    }
 }
 

@@ -47,4 +47,11 @@ interface IsCondition
      * @return \Rules\IsCondition
      */
     public function reset();
+
+    /**
+     * __toString method
+     *
+     * @return string
+     */
+    public function __toString();
 }

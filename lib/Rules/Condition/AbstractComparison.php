@@ -127,4 +127,14 @@ abstract class AbstractComparison implements IsCondition, Assessable
      * @return mixed
      */
     abstract public function evaluate();
+
+    /**
+     * __toString method
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return get_class($this) . ':left:' . $this->left . ':right:' . $this->right;
+    }
 }
