@@ -117,6 +117,50 @@ class ConditionChainTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers \Rules\ConditionChain::getCondition
+     * @expectedException \Rules\Exception\InvalidArgumentException
+     */
+    public function testGetConditionThrowsExceptionForIllegalIndex()
+    {
+        $index = mt_rand(0, 100);
+        $object = new $this->classname();
+        $object->getCondition($index);
+    }
+
+    /**
+     * @covers \Rules\ConditionChain::getCondition
+     */
+    public function testGetConditionReturnsCorrectObjectForExistingIndex()
+    {
+        $conditionMock1 = $this->getMock('\\Rules\\IsCondition');
+        $conditionMock2 = $this->getMock('\\Rules\\IsCondition');
+        $conditionMock3 = $this->getMock('\\Rules\\IsCondition');
+        $conditionMock4 = $this->getMock('\\Rules\\IsCondition');
+        $conditionMock0 = $this->getMock('\\Rules\\IsCondition');
+        $object = new $this->classname();
+
+        $reflProp = new \ReflectionProperty($this->classname, 'conditions');
+        $reflProp->setAccessible(true);
+        $reflProp->setValue(
+            $object,
+            array(
+                $conditionMock0,
+                $conditionMock1,
+                $conditionMock2,
+                $conditionMock3,
+                $conditionMock4,
+            )
+        );
+
+        $index = mt_rand(0, 4);
+
+        $this->assertSame(
+            ${'conditionMock' . $index},
+            $object->getCondition($index)
+        );
+    }
+
+    /**
      * @covers \Rules\ConditionChain::evaluate
      */
     public function testEvaluateReturnsNullIfNoConditionsAreSet()

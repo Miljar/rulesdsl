@@ -5,6 +5,8 @@
 
 namespace Rules;
 
+use Rules\Exception\InvalidArgumentException;
+
 /**
  * Implementation of the Equal condition which
  * verifies if given input values are equal
@@ -55,6 +57,27 @@ class ConditionChain implements IsConditionChain
         $this->conditions[] = $condition;
 
         return $this;
+    }
+
+    /**
+     * Returns the condition at the given index
+     *
+     * @param int $index
+     * @return \Rules\IsConditionChain
+     * @throws \Rules\Exception\InvalidArgumentException
+     */
+    public function getCondition($index)
+    {
+        if (!array_key_exists($index, $this->conditions)) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    'Index %1$s does not exist in the list of conditions',
+                    $index
+                )
+            );
+        }
+
+        return $this->conditions[$index];
     }
 
     /**
