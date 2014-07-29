@@ -1,17 +1,17 @@
-bet.goals_home = game.goals_home and bet.goals_away = game.goals_away
-result = 3
-stop
+when bet.goals_home equals game.goals_home and bet.goals_away equals game.goals_away
+set result to 3
+stop processing
 
-bet.goals_home = bet.goals_away and game.goals_home = game.goals_away
-result = 1
-stop
+when bet.goals_home equals bet.goals_away and game.goals_home equals game.goals_away
+set result to 1
+stop processing
 
-bet.goals_home > bet.goals_away and game.goals_home > game.goals_away
-result = 1
-stop
+when bet.goals_home is greater than bet.goals_away and game.goals_home is greater than game.goals_away
+set result to 1
+stop processing
 
-bet.goals_home < bet.goals_away and game.goals_home < game.goals_away
-result = 1
-stop
+when bet.goals_home is lower than bet.goals_away and game.goals_home is lower than game.goals_away
+set result to 1
+stop processing
 
-result = 0
+set result to 0
