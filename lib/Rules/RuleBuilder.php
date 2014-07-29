@@ -95,6 +95,19 @@ class RuleBuilder
     }
 
     /**
+     * Sets the default value for the condition chain
+     *
+     * @param mixed $value
+     * @return \Rules\RuleBuilder
+     */
+    public function defaultsTo($value)
+    {
+        $this->chain->setDefaultResult($value);
+
+        return $this;
+    }
+
+    /**
      * Evaluates the conditions in the chain
      *
      * @return mixed
