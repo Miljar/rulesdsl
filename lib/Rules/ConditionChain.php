@@ -21,6 +21,11 @@ class ConditionChain implements IsConditionChain
     protected $conditions = array();
 
     /**
+     * @var mixed
+     */
+    protected $defaultResult = null;
+
+    /**
      * ConditionChain constructor
      *
      * @param array $conditions Optional list of conditions
@@ -63,7 +68,7 @@ class ConditionChain implements IsConditionChain
      * Returns the condition at the given index
      *
      * @param int $index
-     * @return \Rules\IsConditionChain
+     * @return \Rules\IsCondition
      * @throws \Rules\Exception\InvalidArgumentException
      */
     public function getCondition($index)
@@ -81,6 +86,20 @@ class ConditionChain implements IsConditionChain
     }
 
     /**
+     * Sets a default result, for when none of the conditions
+     * in the chain evaluate positively
+     *
+     * @param mixed $value
+     * @return \Rules\IsConditionChain
+     */
+    public function setDefaultResult($value)
+    {
+        $this->defaultResult = $value;
+
+        return $this;
+    }
+
+    /**
      * Evaluats the conditions in the chain
      * When a condition breaks the chain and is
      * positively evaluated, this is the return value
@@ -92,7 +111,7 @@ class ConditionChain implements IsConditionChain
      */
     public function evaluate()
     {
-        $result = null;
+        $result = $this->defaultResult;
 
         foreach ($this->conditions as $condition) {
             $result = $condition->evaluate();

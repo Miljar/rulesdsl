@@ -161,6 +161,34 @@ class ConditionChainTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers \Rules\ConditionChain::setDefaultResult
+     */
+    public function testSetDefaultResultReturnsCurrentInstance()
+    {
+        $object = new $this->classname();
+        $result = $object->setDefaultResult('foo');
+
+        $this->assertSame($object, $result);
+    }
+
+    /**
+     * @covers \Rules\ConditionChain::setDefaultResult
+     */
+    public function testSetDefaultResultSetsInProperty()
+    {
+        $object = new $this->classname();
+
+        $reflProp = new \ReflectionProperty($this->classname, 'defaultResult');
+        $reflProp->setAccessible(true);
+
+        $this->assertNull($reflProp->getValue($object));
+
+        $object->setDefaultResult('foo');
+
+        $this->assertEquals('foo', $reflProp->getValue($object));
+    }
+
+    /**
      * @covers \Rules\ConditionChain::evaluate
      */
     public function testEvaluateReturnsNullIfNoConditionsAreSet()
